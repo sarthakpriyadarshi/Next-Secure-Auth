@@ -1,61 +1,151 @@
-'use client';
-//used for making requests
-import axios from "axios";
+"use client"
 
-//base imports
-import Link from "next/link";
-import React, { useEffect } from "react";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import toast from "react-hot-toast";
-import loadConfig from "next/dist/server/config";
+import Link from "next/link"
+import { useState, useEffect } from "react"
+import { useRouter } from "next/navigation"
+import axios from "axios"
+import toast from "react-hot-toast"
+import { AuthLayout } from "@/components/ui/auth-layout"
+import { AuthCard } from "@/components/ui/auth-card"
+import { FormInput } from "@/components/ui/form-input"
+import { LoadingButton } from "@/components/ui/loading-button"
+import { ArrowRight, LogIn } from "lucide-react"
+
+interface UserData {
+  email: string
+  password: string
+  username: string
+}
+
+interface FormErrors {
+  email: string
+  password: string
+  username: string
+}
 
 export default function LoginPage() {
-    const router = useRouter()
-    const [user, setUser] = React.useState({
-        email: "",
-        password: "",
-        username: "",
-    })
-    const [isButtonDisabled, setButtonDisabled] = React.useState(false);
-    console.log(isButtonDisabled)
-    const onLogin = async () => {
-        try {
-            setLoading(true);
-            const res = await axios.post("/api/users/login", user);
-            console.log("Login success", res.data);
-            if(res.data.success) {
-                toast.success("Login successful")
-                setLoading(false);
-                router.push("/profile")
-            } else {
-                console.log("Login failed", res.data.message);
-            }
-        } catch (error: any) {
-            console.log(error.message);
-        }
+  const router = useRouter()
+  const [user, setUser] = useState<UserData>({
+    email: "",
+    password: "",
+    username: "",
+  })
+  const [errors, setErrors] = useState<FormErrors>({
+    email: "",
+    password: "",
+    username: "",
+  })
+  const [loading, setLoading] = useState<boolean>(false)
+  const [isButtonDisabled, setButtonDisabled] = useState<boolean>(true)
+
+  const validateForm = (): boolean => {
+    const newErrors: FormErrors = {
+      email: "",
+      password: "",
+      username: "",
     }
-    const [loading, setLoading] = useState(false);
-    useEffect(() => {
-        if(user.email && user.password && user.username) {
-            setButtonDisabled(false)
-        } else {
-            setButtonDisabled(true)
-        }
-    }, [user])
 
+    if (!user.email) newErrors.email = "Email is required"
+    if (!user.password) newErrors.password = "Password is required"
+    if (!user.username) newErrors.username = "Username is required"
 
-    return (
-        <div className="flex flex-col items-center justify-center h-screen bg-gray-900">
-            <h1 className="font-bold text-2xl">{loading? "Processing": "Login"}</h1>
-            <label htmlFor="email">Email</label>
-            <input type="email" id="email" value={user.email} onChange={(e) => setUser({ ...user, email: e.target.value })} className="border-2 border-gray-300 rounded-md p-2 mb-4" />
-            <label htmlFor="password">Password</label>
-            <input type="password" id="password" value={user.password} onChange={(e) => setUser({ ...user, password: e.target.value })} className="border-2 border-gray-300 rounded-md p-2 mb-4" />
-            <button onClick={onLogin} className="bg-blue-500 text-white rounded-md p-2 mb-4 disabled={isButtonDisabled}">Login</button>
-            <Link href="/forgotpassword" className="text-blue-500">Forgot Password?</Link>
-            <p>Dont have an Account? <Link href="/signup" className="text-blue-500">Sign Up</Link></p>
+    setErrors(newErrors)
+    return !Object.values(newErrors).some((error) => error)
+  }
+
+  const onLogin = async (): Promise<void> => {
+    if (!validateForm()) return
+
+    try {
+      setLoading(true)
+      const res = await axios.post("/api/users/login", user)
+
+      if (res.data.success) {
+        toast.success("Login successful")
+        router.push("/profile")
+      } else {
+        toast.error(res.data.message || "Login failed")
+      }
+    } catch (error: unknown) {
+      if (axios.isAxiosError(error) && error.response?.data?.message) {
+        toast.error(error.response.data.message)
+      } else {
+        toast.error("Login failed")
+      }
+      console.error("Login error:", error)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    if (user.email && user.password && user.username) {
+      setButtonDisabled(false)
+    } else {
+      setButtonDisabled(true)
+    }
+  }, [user])
+
+  return (
+    <AuthLayout title="Welcome back" subtitle="Sign in to your account to continue">
+      <AuthCard>
+        <div className="space-y-4">
+          <FormInput
+            label="Username"
+            id="username"
+            type="text"
+            placeholder="Enter your username"
+            value={user.username}
+            error={errors.username}
+            onChange={(e) => setUser({ ...user, username: e.target.value })}
+          />
+
+          <FormInput
+            label="Email"
+            id="email"
+            type="email"
+            placeholder="Enter your email"
+            value={user.email}
+            error={errors.email}
+            onChange={(e) => setUser({ ...user, email: e.target.value })}
+          />
+
+          <FormInput
+            label="Password"
+            id="password"
+            type="password"
+            placeholder="Enter your password"
+            value={user.password}
+            error={errors.password}
+            onChange={(e) => setUser({ ...user, password: e.target.value })}
+          />
+
+          <div className="flex justify-end">
+            <Link href="/forgotpassword" className="text-sm text-primary hover:underline transition-colors">
+              Forgot password?
+            </Link>
+          </div>
+
+          <LoadingButton
+            loading={loading}
+            loadingText="Signing in..."
+            disabled={isButtonDisabled}
+            onClick={onLogin}
+            className="mt-2"
+          >
+            <LogIn className="mr-2 h-4 w-4" /> Sign in
+          </LoadingButton>
         </div>
-    )
 
+        <div className="mt-6 text-center">
+          <p className="text-sm text-gray-400">
+            Don&apos;t have an account?{" "}
+            <Link href="/signup" className="text-primary hover:underline transition-colors inline-flex items-center">
+              Sign up <ArrowRight className="ml-1 h-3 w-3" />
+            </Link>
+          </p>
+        </div>
+      </AuthCard>
+    </AuthLayout>
+  )
 }

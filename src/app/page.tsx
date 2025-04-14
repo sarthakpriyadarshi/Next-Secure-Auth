@@ -1,103 +1,257 @@
-import Image from "next/image";
+import Link from "next/link"
+import { ArrowRight, CheckCircle, Shield, Zap } from 'lucide-react'
+import { Button } from "@/components/ui/button"
 
-export default function Home() {
+export default function HeroPage() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className="flex min-h-screen flex-col bg-gradient-to-br from-gray-950 via-gray-900 to-gray-800">
+      <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
+      
+      <header className="relative z-10 mx-auto flex w-full max-w-7xl items-center justify-between px-4 py-6">
+        <div className="flex items-center">
+          <Shield className="h-8 w-8 text-primary" />
+          <span className="ml-2 text-xl font-bold text-white">SecureAuth</span>
         </div>
+        <nav className="hidden space-x-8 md:flex">
+          <Link href="/features" className="text-sm text-gray-300 hover:text-white transition-colors">
+            Features
+          </Link>
+          <Link href="/pricing" className="text-sm text-gray-300 hover:text-white transition-colors">
+            Pricing
+          </Link>
+          <Link href="/docs" className="text-sm text-gray-300 hover:text-white transition-colors">
+            Documentation
+          </Link>
+        </nav>
+        <div className="flex items-center space-x-4">
+          <Link href="/login" className="text-sm text-gray-300 hover:text-white transition-colors">
+            Sign in
+          </Link>
+          <Link href="/signup">
+            <Button size="sm">Get Started</Button>
+          </Link>
+        </div>
+      </header>
+
+      <main className="relative z-10 flex flex-1 flex-col">
+        <section className="flex flex-1 items-center px-4 py-20 md:py-32">
+          <div className="mx-auto max-w-6xl">
+            <div className="grid gap-12 lg:grid-cols-2">
+              <div className="flex flex-col justify-center">
+                <div className="mb-6 inline-flex items-center rounded-full border border-gray-700 bg-gray-800/50 px-3 py-1">
+                  <span className="mr-2 rounded-full bg-primary px-2 py-0.5 text-xs font-medium text-white">
+                    New
+                  </span>
+                  <span className="text-sm text-gray-300">Introducing our enhanced security features</span>
+                </div>
+                <h1 className="mb-6 text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl">
+                  Secure authentication for your modern applications
+                </h1>
+                <p className="mb-8 max-w-lg text-lg text-gray-400">
+                  A complete authentication solution with all the features you need to secure your application. Easy to
+                  integrate, customizable, and built with modern best practices.
+                </p>
+                <div className="flex flex-col space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
+                  <Link href="/signup">
+                    <Button size="lg" className="w-full sm:w-auto">
+                      Get Started <ArrowRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  </Link>
+                  <Link href="/docs">
+                    <Button variant="outline" size="lg" className="w-full sm:w-auto">
+                      View Documentation
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+              <div className="relative flex items-center justify-center">
+                <div className="absolute -inset-0.5 rounded-xl bg-gradient-to-r from-primary/20 to-purple-500/20 opacity-75 blur-xl"></div>
+                <div className="relative overflow-hidden rounded-xl border border-white/10 bg-gray-900/90 shadow-2xl">
+                  <div className="flex items-center justify-between border-b border-gray-800 px-4 py-3">
+                    <div className="flex space-x-1.5">
+                      <div className="h-3 w-3 rounded-full bg-red-500"></div>
+                      <div className="h-3 w-3 rounded-full bg-yellow-500"></div>
+                      <div className="h-3 w-3 rounded-full bg-green-500"></div>
+                    </div>
+                    <div className="text-xs text-gray-400">Authentication Preview</div>
+                  </div>
+                  <div className="p-6">
+                    <div className="mb-4 text-center">
+                      <h3 className="text-xl font-bold text-white">Welcome back</h3>
+                      <p className="text-sm text-gray-400">Sign in to your account to continue</p>
+                    </div>
+                    <div className="space-y-4">
+                      <div className="rounded-lg border border-gray-700 bg-gray-800/50 p-3">
+                        <label className="mb-1 block text-xs text-gray-400">Email</label>
+                        <div className="text-sm text-white">user@example.com</div>
+                      </div>
+                      <div className="rounded-lg border border-gray-700 bg-gray-800/50 p-3">
+                        <label className="mb-1 block text-xs text-gray-400">Password</label>
+                        <div className="text-sm text-white">••••••••</div>
+                      </div>
+                      <button className="w-full rounded-lg bg-primary py-2.5 text-sm font-medium text-white">
+                        Sign in
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="bg-gray-900/50 px-4 py-20">
+          <div className="mx-auto max-w-6xl">
+            <div className="mb-12 text-center">
+              <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">Key Features</h2>
+              <p className="mx-auto max-w-2xl text-gray-400">
+                Everything you need to implement secure, modern authentication in your application
+              </p>
+            </div>
+
+            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+              <div className="rounded-xl border border-gray-800 bg-gray-900/50 p-6">
+                <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                  <Shield className="h-6 w-6" />
+                </div>
+                <h3 className="mb-2 text-xl font-bold text-white">Secure by Default</h3>
+                <p className="text-gray-400">
+                  Built with security best practices including password hashing, rate limiting, and protection against
+                  common vulnerabilities.
+                </p>
+              </div>
+
+              <div className="rounded-xl border border-gray-800 bg-gray-900/50 p-6">
+                <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                  <Zap className="h-6 w-6" />
+                </div>
+                <h3 className="mb-2 text-xl font-bold text-white">Fast Integration</h3>
+                <p className="text-gray-400">
+                  Get up and running quickly with our easy-to-use API and comprehensive documentation. Integrate in
+                  minutes, not days.
+                </p>
+              </div>
+
+              <div className="rounded-xl border border-gray-800 bg-gray-900/50 p-6">
+                <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                  <CheckCircle className="h-6 w-6" />
+                </div>
+                <h3 className="mb-2 text-xl font-bold text-white">Complete Solution</h3>
+                <p className="text-gray-400">
+                  Includes everything you need: login, signup, password reset, email verification, and profile
+                  management.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="px-4 py-20">
+          <div className="mx-auto max-w-6xl">
+            <div className="rounded-2xl border border-gray-800 bg-gray-900/50 p-8 md:p-12">
+              <div className="grid gap-8 md:grid-cols-2">
+                <div>
+                  <h2 className="mb-4 text-3xl font-bold text-white">Ready to get started?</h2>
+                  <p className="mb-6 text-gray-400">
+                    Join thousands of developers who trust our authentication solution for their applications.
+                  </p>
+                  <Link href="/signup">
+                    <Button size="lg">Create your account</Button>
+                  </Link>
+                </div>
+                <div className="flex flex-col justify-center space-y-4 md:items-end">
+                  <div className="flex items-center space-x-3">
+                    <CheckCircle className="h-5 w-5 text-primary" />
+                    <span className="text-gray-300">No credit card required</span>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <CheckCircle className="h-5 w-5 text-primary" />
+                    <span className="text-gray-300">Free tier available</span>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <CheckCircle className="h-5 w-5 text-primary" />
+                    <span className="text-gray-300">Cancel anytime</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+
+      <footer className="relative z-10 border-t border-gray-800 bg-gray-900/50 px-4 py-8">
+        <div className="mx-auto max-w-7xl">
+          <div className="grid gap-8 md:grid-cols-4">
+            <div>
+              <div className="flex items-center">
+                <Shield className="h-6 w-6 text-primary" />
+                <span className="ml-2 text-lg font-bold text-white">SecureAuth</span>
+              </div>
+              <p className="mt-2 text-sm text-gray-400">
+                Secure, modern authentication for your applications
+              </p>
+            </div>
+            <div>
+              <h3 className="mb-3 text-sm font-semibold uppercase text-gray-400">Product</h3>
+              <ul className="space-y-2">
+                <li>
+                  <Link href="/features" className="text-sm text-gray-300 hover:text-white transition-colors">
+                    Features
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/pricing" className="text-sm text-gray-300 hover:text-white transition-colors">
+                    Pricing
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/docs" className="text-sm text-gray-300 hover:text-white transition-colors">
+                    Documentation
+                  </Link>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="mb-3 text-sm font-semibold uppercase text-gray-400">Company</h3>
+              <ul className="space-y-2">
+                <li>
+                  <Link href="/about" className="text-sm text-gray-300 hover:text-white transition-colors">
+                    About
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/blog" className="text-sm text-gray-300 hover:text-white transition-colors">
+                    Blog
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/careers" className="text-sm text-gray-300 hover:text-white transition-colors">
+                    Careers
+                  </Link>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="mb-3 text-sm font-semibold uppercase text-gray-400">Legal</h3>
+              <ul className="space-y-2">
+                <li>
+                  <Link href="/privacy" className="text-sm text-gray-300 hover:text-white transition-colors">
+                    Privacy
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/terms" className="text-sm text-gray-300 hover:text-white transition-colors">
+                    Terms
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div className="mt-8 border-t border-gray-800 pt-8 text-center">
+            <p className="text-sm text-gray-400">© {new Date().getFullYear()} SecureAuth. All rights reserved.</p>
+          </div>
+        </div>
       </footer>
     </div>
-  );
+  )
 }
