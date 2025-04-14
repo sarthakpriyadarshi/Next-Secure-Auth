@@ -2,7 +2,13 @@ import nodemailer from 'nodemailer';
 import User from '@/models/userModel';
 import bcrypt from 'bcryptjs';
 
-export const sendEmail = async ({email, emailType, userId}: any) => {
+interface EmailParams {
+    email: string;
+    emailType: 'verify' | 'reset';
+    userId: string;
+}
+
+export const sendEmail = async ({email, emailType, userId}: EmailParams) => {
     try {
         const hashedToken = await bcrypt.hash(userId.toString(), 10)
         if(emailType === 'verify') {
@@ -25,13 +31,17 @@ export const sendEmail = async ({email, emailType, userId}: any) => {
             from: 'sarthak@cyberol.codes',
             to: email,
             subject: emailType === 'verify' ? 'Verify your account' : 'Reset your password',
-            html: emailType === 'verify' ? `<p>Click <a href="${process.env.DOMAIN}/verifyemail?token=${hashedToken}">here</a> to ${emailType === 'verify' ? 'verify your account' : 'reset your password'} or copy and paste the link below ${process.env.DOMAIN}/verifyemail?token=${hashedToken}</p>`
-            : `<p>Click <a href="${process.env.DOMAIN}/resetpassword?token=${hashedToken}">here</a> to ${emailType === 'verify' ? 'verify your account' : 'reset your password'} or copy and paste the link below ${process.env.DOMAIN}/resetpassword?token=${hashedToken}</p>`
+            html: emailType === 'verify' 
+                ? `<p>Click <a href="${process.env.DOMAIN}/verifyemail?token=${hashedToken}">here</a> to verify your account or copy and paste the link below: ${process.env.DOMAIN}/verifyemail?token=${hashedToken}</p>`
+                : `<p>Click <a href="${process.env.DOMAIN}/resetpassword?token=${hashedToken}">here</a> to reset your password or copy and paste the link below: ${process.env.DOMAIN}/resetpassword?token=${hashedToken}</p>`
         }
 
         const mailresponse = await transport.sendMail(mailOptions);
         return mailresponse;
-    } catch(error: any) {
-        throw new Error(error.message)
+    } catch(error: unknown) {
+        if (error instanceof Error) {
+            throw new Error(error.message);
+        }
+        throw new Error('An unknown error occurred');
     }
 }

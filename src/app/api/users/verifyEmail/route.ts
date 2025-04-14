@@ -25,12 +25,12 @@ export async function POST(request: NextRequest) {
             message: "Email verified successfully",
             success: true
         }, { status: 200 })
-    } catch(error: any) {
+    } catch(error: unknown) {
         console.error("Error verifying email:", error);
         return NextResponse.json({
             message: "Internal server error",
             success: false,
-            error: error.message
+            error: error instanceof Error ? error.message : "Unknown error"
         }, { status: 500 })
     }
 }

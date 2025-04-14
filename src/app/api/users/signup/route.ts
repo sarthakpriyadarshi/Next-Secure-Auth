@@ -36,12 +36,16 @@ export async function POST(request: NextRequest) {
         })
 
         
-    } catch (error: any) {
-        console.log(error.message);
+    } catch (error: unknown) {
+        if (error instanceof Error) {
+            console.log(error.message);
+        } else {
+            console.log("An unknown error occurred");
+        }
         return NextResponse.json({
             message: "Internal server error",
             success: false,
-            error: error.message
+            error: error instanceof Error ? error.message : "An unknown error occurred"
         }, { status: 500 })
     }
 }

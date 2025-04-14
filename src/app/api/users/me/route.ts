@@ -17,7 +17,7 @@ export async function GET(request: NextRequest) {
         console.error("Error fetching user data:", error);
         return NextResponse.json({
             message: "Error fetching user data",
-            error: error.message
+            error: error instanceof Error ? error.message : "An unknown error occurred"
         }, { status: 500 })
     }
 }

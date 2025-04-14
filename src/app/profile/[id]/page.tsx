@@ -13,7 +13,14 @@ interface UserData {
   [key: string]: unknown
 }
 
-export default function ProfilePage({ params }: { params: { id: string } }) {
+interface ProfilePageProps {
+  params: {
+    id: string
+  }
+}
+
+
+export default function ProfilePage({ params }: ProfilePageProps) {
   const [userData, setUserData] = useState<UserData | null>(null)
   const [loading, setLoading] = useState<boolean>(true)
   const [error, setError] = useState<string>("")

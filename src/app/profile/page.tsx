@@ -15,6 +15,7 @@ interface UserData {
   [key: string]: unknown
 }
 
+
 export default function ProfilePage() {
   const router = useRouter()
   const [userData, setUserData] = useState<UserData | null>(null)
