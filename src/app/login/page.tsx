@@ -53,7 +53,8 @@ export default function LoginPage() {
             <label htmlFor="password">Password</label>
             <input type="password" id="password" value={user.password} onChange={(e) => setUser({ ...user, password: e.target.value })} className="border-2 border-gray-300 rounded-md p-2 mb-4" />
             <button onClick={onLogin} className="bg-blue-500 text-white rounded-md p-2 mb-4 disabled={isButtonDisabled}">Login</button>
-            <p>Dont have an Account? <Link href="/signup" className="text-blue-500">SignUp</Link></p>
+            <Link href="/forgotpassword" className="text-blue-500">Forgot Password?</Link>
+            <p>Dont have an Account? <Link href="/signup" className="text-blue-500">Sign Up</Link></p>
         </div>
     )
 
