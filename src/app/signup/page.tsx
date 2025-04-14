@@ -8,6 +8,7 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import loadConfig from "next/dist/server/config";
+import toast from "react-hot-toast";
 
 export default function SignupPage() {
     const router = useRouter()
@@ -26,7 +27,7 @@ export default function SignupPage() {
             router.push("/login")
         } catch (error) {
             console.log(error.message);
-            toast.eroor(error.message);
+            toast.error(error.message);
         }
     }
     const [loading, setLoading] = useState(false);

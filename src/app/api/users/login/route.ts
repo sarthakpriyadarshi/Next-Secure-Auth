@@ -32,7 +32,7 @@ export async function POST(request: NextRequest) {
             httpOnly: true,
         });
         return response;
-    } catch (error: never) {
+    } catch (error: any) {
         console.log(error.message);
         return NextResponse.json({
             message: "Internal server error",
