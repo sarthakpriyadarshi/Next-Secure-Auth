@@ -121,7 +121,7 @@ export default function LoginPage() {
           />
 
           <div className="flex justify-end">
-            <Link href="/forgotpassword" className="text-sm text-primary hover:underline transition-colors">
+            <Link href="/forgotpassword" className="text-sm text-green-300 font-bold hover:underline transition-colors">
               Forgot password?
             </Link>
           </div>
@@ -140,7 +140,7 @@ export default function LoginPage() {
         <div className="mt-6 text-center">
           <p className="text-sm text-gray-400">
             Don&apos;t have an account?{" "}
-            <Link href="/signup" className="text-primary hover:underline transition-colors inline-flex items-center">
+            <Link href="/signup" className="text-green-300 hover:underline transition-colors inline-flex items-center font-bold">
               Sign up <ArrowRight className="ml-1 h-3 w-3" />
             </Link>
           </p>

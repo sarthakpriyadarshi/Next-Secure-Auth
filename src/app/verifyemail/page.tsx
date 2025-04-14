@@ -49,7 +49,7 @@ export default function VerifyEmailPage() {
       <AuthCard>
         {loading ? (
           <div className="flex flex-col items-center justify-center py-8">
-            <Loader2 className="h-12 w-12 text-primary animate-spin mb-4" />
+            <Loader2 className="h-12 w-12 text-green-300 animate-spin mb-4" />
             <p className="text-gray-400">Verifying your email address...</p>
           </div>
         ) : verified ? (
@@ -76,7 +76,7 @@ export default function VerifyEmailPage() {
               <p className="text-gray-400 mb-4">
                 If you&apos;re having trouble verifying your email, please try again or contact support.
               </p>
-              <Link href="/login" className="text-primary hover:underline">
+              <Link href="/login" className="text-green-300 hover:underline">
                 Return to login
               </Link>
             </div>

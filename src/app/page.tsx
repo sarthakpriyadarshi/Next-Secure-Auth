@@ -9,20 +9,9 @@ export default function HeroPage() {
       
       <header className="relative z-10 mx-auto flex w-full max-w-7xl items-center justify-between px-4 py-6">
         <div className="flex items-center">
-          <Shield className="h-8 w-8 text-primary" />
+          <Shield className="h-8 w-8 text-white" />
           <span className="ml-2 text-xl font-bold text-white">SecureAuth</span>
         </div>
-        <nav className="hidden space-x-8 md:flex">
-          <Link href="/features" className="text-sm text-gray-300 hover:text-white transition-colors">
-            Features
-          </Link>
-          <Link href="/pricing" className="text-sm text-gray-300 hover:text-white transition-colors">
-            Pricing
-          </Link>
-          <Link href="/docs" className="text-sm text-gray-300 hover:text-white transition-colors">
-            Documentation
-          </Link>
-        </nav>
         <div className="flex items-center space-x-4">
           <Link href="/login" className="text-sm text-gray-300 hover:text-white transition-colors">
             Sign in
@@ -55,11 +44,6 @@ export default function HeroPage() {
                   <Link href="/signup">
                     <Button size="lg" className="w-full sm:w-auto">
                       Get Started <ArrowRight className="ml-2 h-4 w-4" />
-                    </Button>
-                  </Link>
-                  <Link href="/docs">
-                    <Button variant="outline" size="lg" className="w-full sm:w-auto">
-                      View Documentation
                     </Button>
                   </Link>
                 </div>
@@ -111,7 +95,7 @@ export default function HeroPage() {
 
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
               <div className="rounded-xl border border-gray-800 bg-gray-900/50 p-6">
-                <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-white">
                   <Shield className="h-6 w-6" />
                 </div>
                 <h3 className="mb-2 text-xl font-bold text-white">Secure by Default</h3>
@@ -122,7 +106,7 @@ export default function HeroPage() {
               </div>
 
               <div className="rounded-xl border border-gray-800 bg-gray-900/50 p-6">
-                <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-white">
                   <Zap className="h-6 w-6" />
                 </div>
                 <h3 className="mb-2 text-xl font-bold text-white">Fast Integration</h3>
@@ -133,7 +117,7 @@ export default function HeroPage() {
               </div>
 
               <div className="rounded-xl border border-gray-800 bg-gray-900/50 p-6">
-                <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-white">
                   <CheckCircle className="h-6 w-6" />
                 </div>
                 <h3 className="mb-2 text-xl font-bold text-white">Complete Solution</h3>
@@ -184,67 +168,12 @@ export default function HeroPage() {
           <div className="grid gap-8 md:grid-cols-4">
             <div>
               <div className="flex items-center">
-                <Shield className="h-6 w-6 text-primary" />
+                <Shield className="h-6 w-6 text-white" />
                 <span className="ml-2 text-lg font-bold text-white">SecureAuth</span>
               </div>
               <p className="mt-2 text-sm text-gray-400">
                 Secure, modern authentication for your applications
               </p>
-            </div>
-            <div>
-              <h3 className="mb-3 text-sm font-semibold uppercase text-gray-400">Product</h3>
-              <ul className="space-y-2">
-                <li>
-                  <Link href="/features" className="text-sm text-gray-300 hover:text-white transition-colors">
-                    Features
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/pricing" className="text-sm text-gray-300 hover:text-white transition-colors">
-                    Pricing
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/docs" className="text-sm text-gray-300 hover:text-white transition-colors">
-                    Documentation
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="mb-3 text-sm font-semibold uppercase text-gray-400">Company</h3>
-              <ul className="space-y-2">
-                <li>
-                  <Link href="/about" className="text-sm text-gray-300 hover:text-white transition-colors">
-                    About
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/blog" className="text-sm text-gray-300 hover:text-white transition-colors">
-                    Blog
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/careers" className="text-sm text-gray-300 hover:text-white transition-colors">
-                    Careers
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="mb-3 text-sm font-semibold uppercase text-gray-400">Legal</h3>
-              <ul className="space-y-2">
-                <li>
-                  <Link href="/privacy" className="text-sm text-gray-300 hover:text-white transition-colors">
-                    Privacy
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/terms" className="text-sm text-gray-300 hover:text-white transition-colors">
-                    Terms
-                  </Link>
-                </li>
-              </ul>
             </div>
           </div>
           <div className="mt-8 border-t border-gray-800 pt-8 text-center">

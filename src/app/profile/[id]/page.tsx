@@ -5,6 +5,7 @@ import axios from "axios"
 import { User, Mail, Calendar, ArrowLeft } from "lucide-react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
+import { useParams } from "next/navigation"
 
 interface UserData {
   _id?: string
@@ -13,19 +14,14 @@ interface UserData {
   [key: string]: unknown
 }
 
-interface ProfilePageProps {
-  params: {
-    id: string
-  }
-}
 
 
-export default function ProfilePage({ params }: ProfilePageProps) {
+export default function ProfilePage() {
   const [userData, setUserData] = useState<UserData | null>(null)
   const [loading, setLoading] = useState<boolean>(true)
   const [error, setError] = useState<string>("")
   const router = useRouter()
-
+  const params = useParams<{ id: string }>()
   useEffect(() => {
     const fetchUserData = async (): Promise<void> => {
       try {
@@ -67,7 +63,7 @@ export default function ProfilePage({ params }: ProfilePageProps) {
           </p>
           <Link
             href="/profile"
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90"
+            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-green-300-foreground shadow transition-colors hover:bg-primary/90"
           >
             <ArrowLeft className="mr-2 h-4 w-4" /> Back to Your Profile
           </Link>

@@ -130,7 +130,7 @@ export default function SignupPage() {
         <div className="mt-6 text-center">
           <p className="text-sm text-gray-400">
             Already have an account?{" "}
-            <Link href="/login" className="text-primary hover:underline transition-colors inline-flex items-center">
+            <Link href="/login" className="text-green-300 hover:underline transition-colors inline-flex items-center">
               Sign in <ArrowRight className="ml-1 h-3 w-3" />
             </Link>
           </p>

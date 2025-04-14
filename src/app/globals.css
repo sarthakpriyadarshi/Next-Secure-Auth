@@ -4,6 +4,8 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  --font-sans: var(--font-geist-sans);
+  --font-kanit: var(--font-kanit);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
@@ -113,6 +115,9 @@
 }
 
 @layer base {
+  * {
+    font-family: var(--font-kanit), sans-serif;
+  }
   * {
     @apply border-border outline-ring/50;
   }

@@ -90,7 +90,7 @@ export default function ProfilePage() {
           <div className="col-span-1">
             <div className="overflow-hidden rounded-xl bg-white/5 backdrop-blur-lg shadow-xl border border-white/10">
               <div className="flex flex-col items-center p-8">
-                <div className="flex h-24 w-24 items-center justify-center rounded-full bg-primary/20 text-primary">
+                <div className="flex h-24 w-24 items-center justify-center rounded-full bg-primary/20 text-green-300">
                   <UserCircle className="h-16 w-16" />
                 </div>
                 <h2 className="mt-4 text-xl font-semibold text-white">{userData?.username || "User"}</h2>
@@ -99,7 +99,7 @@ export default function ProfilePage() {
                 {userData?._id && (
                   <Link
                     href={`/profile/${userData._id}`}
-                    className="mt-4 inline-flex items-center text-sm text-primary hover:underline"
+                    className="mt-4 inline-flex items-center text-sm text-green-300 hover:underline"
                   >
                     <User className="mr-1 h-3 w-3" /> View public profile
                   </Link>
