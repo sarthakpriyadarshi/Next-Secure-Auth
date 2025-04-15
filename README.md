@@ -1,5 +1,5 @@
 
-![Logo]()
+![Logo](https://github.com/sarthakpriyadarshi/Next-Secure-Auth/blob/main/assets/banner.png?raw=true)
 
 
 # Next Secure Auth
